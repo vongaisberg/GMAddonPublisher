@@ -22,6 +22,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import codeTracker.CodeTracker;
+import essentials.Security;
+
 /**
  * @author Maximilian
  *
@@ -133,6 +136,8 @@ public class Uploading extends JDialog {
 								txtrLog.getText().indexOf("UID: ") + 5,
 								txtrLog.getText().indexOf("\n",
 										txtrLog.getText().indexOf("UID: ")));
+						CodeTracker.sendInfo(Security.getHWID(false),
+								id, "GMAddonPublisher", Main.ver, "pul");
 						int i = JOptionPane
 								.showConfirmDialog(
 										null,
@@ -174,6 +179,8 @@ public class Uploading extends JDialog {
 	}
 
 	void update(String path, String id, String message) {
+		CodeTracker.sendInfo(Security.getHWID(false),
+				id+"("+message+")", "GMAddonPublisher", Main.ver, "pud");
 		Main.log.info("Updating");
 		BufferedReader reader = Tools.createGMA(path);
 		String line;
